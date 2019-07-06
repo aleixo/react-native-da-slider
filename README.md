@@ -46,4 +46,9 @@ This component does not relly on other libs besides react-native.
 | height                 | undefined | number     | This props lets you specify the height of the slider. The default will lead to flex |
 
 ## TODO
-- [ ] - Loop mode
+- [ ] Loop mode
+- [ ] Allow to override default pagination
+- [ ] When height is given, optimize the FlatList
+- [ ] Extract to multiple components
+- [ ] Write unit tests
+
