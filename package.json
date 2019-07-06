@@ -1,0 +1,19 @@
+{
+  "name": "react-native-da-slider",
+  "version": "0.1.0",
+  "description": "Easy to use slider",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aleixo/react-native-da-slider.git"
+  },
+  "keywords": [
+    "react-native"
+  ],
+  "author": "Diogo Aleixo",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/aleixo/react-native-da-slider/issues"
+  },
+  "homepage": "https://github.com/aleixo/react-native-da-slider#readme"
+}
