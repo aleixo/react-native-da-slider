@@ -68,7 +68,11 @@ class Slider extends React.Component {
    * @returns {number} - The next index number
    */
   _nextIndexRight = () => {
+    const { loop } = this.props;
     const nextObviousIndex = this.currentIndex - 1;
+    if (!loop && nextObviousIndex < 0) {
+      return this.currentIndex;
+    }
     return nextObviousIndex < 0 ? this.datasource.length - 1 : nextObviousIndex;
   }
 
@@ -79,7 +83,11 @@ class Slider extends React.Component {
    * @returns {number} - The next index number
    */
   _nextIndexLeft = () => {
+    const { loop } = this.props;
     const nextObviousIndex = this.currentIndex + 1;
+    if (!loop && nextObviousIndex > this.datasource.length - 1) {
+      return this.currentIndex;
+    }
     return nextObviousIndex > this.datasource.length - 1 ? 0 : nextObviousIndex;
   }
 
@@ -121,7 +129,12 @@ class Slider extends React.Component {
    */
   _handleScrollEnd = (event) => {
     const { autoplay, autoplayInterval, onIndexChange } = this.props;
-    const scrollingLeft = event.nativeEvent.contentOffset.x > this.scrollStartAt;
+
+    let scrollingLeft = event.nativeEvent.contentOffset.x > this.scrollStartAt;
+
+    if (event.nativeEvent.contentOffset.x === this.scrollStartAt) {
+      scrollingLeft = this.currentIndex === 0 ? false : true;
+    }
 
     this.currentIndex = scrollingLeft ? this._nextIndexLeft() : this._nextIndexRight();
     this.listRef.scrollToIndex({ animated: true, index: this.currentIndex });
@@ -216,5 +229,6 @@ Slider.defaultProps = {
   children: [],
   onIndexChange: () => { },
   renderCustomPagination: () => { },
+  loop: false,
 }
 export default Slider;

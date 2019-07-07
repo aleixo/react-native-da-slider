@@ -7,6 +7,7 @@ export default function App() {
   return (
     <View style={styles.container}>
       <Slider
+        loop
         autoplay
         height={100}
         autoplayInterval={2000}
