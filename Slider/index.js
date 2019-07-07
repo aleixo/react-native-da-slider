@@ -39,7 +39,7 @@ class Slider extends React.Component {
     const autoplayHandler = () => {
       this.currentIndex = this._nextIndexLeft();
       this._updateIndexState(this.currentIndex, onIndexChange);
-      this.listRef.scrollToIndex({ animated: true, index: this.currentIndex });
+      this.listRef && this.listRef.scrollToIndex({ animated: true, index: this.currentIndex });
     };
 
     clearInterval(this.autoPlayIntervalRef);
