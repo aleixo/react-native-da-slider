@@ -42,6 +42,7 @@ class Slider extends React.Component {
       this.listRef.scrollToIndex({ animated: true, index: this.currentIndex });
     };
 
+    clearInterval(this.autoPlayIntervalRef);
     this.autoPlayIntervalRef = setInterval(autoplayHandler, interval);
   }
 
@@ -114,6 +115,24 @@ class Slider extends React.Component {
     clearInterval(this.autoPlayIntervalRef);
   }
 
+  _handleTouchCancel = () => {
+    const { autoplay, autoplayInterval } = this.props;
+
+    autoplay && this._startAutoplay(autoplayInterval)
+  }
+  /**
+     * This function handles the ending of the touch.
+     *    
+     * Used to restart the pause autoplay loop
+     * 
+     * @param {Object} event - The end touch event.
+     */
+  _handleTouchEnd = () => {
+    const { autoplay, autoplayInterval } = this.props;
+
+    autoplay && this._startAutoplay(autoplayInterval)
+  }
+
   /**
    * This function handles the beggining of the scroll.
    *    
@@ -123,6 +142,7 @@ class Slider extends React.Component {
    */
   _handleScrollBegin = (event) => {
     this.scrollStartAt = event.nativeEvent.contentOffset.x;
+    clearInterval(this.autoPlayIntervalRef);
   }
 
   /**
@@ -147,8 +167,8 @@ class Slider extends React.Component {
 
     this.currentIndex = scrollingLeft ? this._nextIndexLeft() : this._nextIndexRight();
     this.listRef.scrollToIndex({ animated: true, index: this.currentIndex });
-
     autoplay && this._startAutoplay(autoplayInterval)
+
     this._updateIndexState(this.currentIndex, onIndexChange);
   }
 
@@ -197,10 +217,16 @@ class Slider extends React.Component {
           renderItem={this._handleFlatListRenderItem}
           showsHorizontalScrollIndicator={false}
           onTouchStart={this._handleTouchStart}
+          onTouchEnd={this._handleTouchEnd}
           onScrollBeginDrag={this._handleScrollBegin}
           onScrollEndDrag={this._handleScrollEnd}
+          onTouchCancel={this._handleTouchCancel}
+          onTouchEndCapture={this._handleTouchCancel}
         />
-        <View style={[styles.paginationContainer, { width: layout.width, }]}>
+        <View
+          onTouchStart={this._handleTouchStart}
+          onTouchEnd={this._handleTouchEnd}
+          style={[styles.paginationContainer, { width: layout.width, }]}>
           {
             renderCustomPagination &&
             <View style={{ position: 'absolute', bottom: 0, width: layout.width }}>
@@ -236,7 +262,7 @@ class Slider extends React.Component {
 Slider.defaultProps = {
   autoplay: false,
   overridePagination: false,
-  autoplayInterval: 2000,
+  autoplayInterval: 3000,
   defaultPaginationActiveColor: "black",
   defaultPaginationInactiveColor: "white",
   children: [],
