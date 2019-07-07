@@ -3,9 +3,6 @@
   "version": "0.1.4",
   "description": "Easy to use slider",
   "main": "index.js",
-  "scripts": {
-    "publish": "cp -rf ./example/Slider/ ./Slider && npm publish"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/aleixo/react-native-da-slider.git"
