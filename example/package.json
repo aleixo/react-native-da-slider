@@ -3,9 +3,9 @@
   "scripts": {
     "copy": "cp -rf ../Slider/ ./Slider",
     "start": "yarn copy && expo start",
-    "android": "yarn start --android",
-    "ios": "yarn start --ios",
-    "web": "yarn start --web",
+    "android": "yarn copy && expo start --android",
+    "ios": "yarn copy && expo start --ios",
+    "web": "yarn copy && expo start --web",
     "eject": "expo eject"
   },
   "dependencies": {
