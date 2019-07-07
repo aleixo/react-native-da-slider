@@ -175,7 +175,10 @@ class Slider extends React.Component {
       defaultPaginationInactiveColor,
       defaultPaginationActiveColor, height } = this.props;
     return (
-      <View height={height} onLayout={this._onViewLayout}>
+      <View style={{
+        flex: height ? 0 : 1,
+        height: height,
+      }} onLayout={this._onViewLayout}>
         <FlatList
           horizontal
           listKey={listKey}
@@ -190,7 +193,7 @@ class Slider extends React.Component {
         <View style={[styles.paginationContainer, { width: layout.width, }]}>
           {
             renderCustomPagination &&
-            <View style={{ width: layout.width }}>
+            <View style={{ position: 'absolute', bottom: 0, width: layout.width }}>
               {renderCustomPagination(currentIndex)}
             </View>
           }

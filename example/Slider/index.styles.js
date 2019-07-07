@@ -6,6 +6,7 @@ export default StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
+    bottom: 10,
   },
   defaultPaginationItem: {
     borderRadius: 5 / 2,
@@ -15,7 +16,7 @@ export default StyleSheet.create({
     backgroundColor: 'blue'
   },
   paginationContainer: {
-    bottom: 10,
+    bottom: 0,
     position: 'absolute',
     justifyContent: 'center',
     alignContent: 'center',
