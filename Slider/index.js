@@ -103,16 +103,25 @@ class Slider extends React.Component {
   }
 
   /**
-   * THis function handles the beggining of the scroll.
+   * This function handles the beggining of the touch.
    * 
    * It is used to clear the current autoplay in order to prevent
    * autoplay during long press.
    * 
+   * @param {Object} event - The begin touch event.
+   */
+  _handleTouchStart = () => {
+    clearInterval(this.autoPlayIntervalRef);
+  }
+
+  /**
+   * This function handles the beggining of the scroll.
+   *    
+   * Used to cache the starting scroll to know the scroll direction.
+   * 
    * @param {Object} event - The begin scroll event.
    */
   _handleScrollBegin = (event) => {
-    clearInterval(this.autoPlayIntervalRef);
-
     this.scrollStartAt = event.nativeEvent.contentOffset.x;
   }
 
@@ -187,6 +196,7 @@ class Slider extends React.Component {
           data={this.datasource}
           renderItem={this._handleFlatListRenderItem}
           showsHorizontalScrollIndicator={false}
+          onTouchStart={this._handleTouchStart}
           onScrollBeginDrag={this._handleScrollBegin}
           onScrollEndDrag={this._handleScrollEnd}
         />
