@@ -155,7 +155,7 @@ class Slider extends React.Component {
 
   render() {
     const { currentIndex, layout, listKey } = this.state;
-    const { renderCustomPagination } = this.props;
+    const { renderCustomPagination, overridePagination } = this.props;
     return (
       <View onLayout={this._onViewLayout}>
         <FlatList

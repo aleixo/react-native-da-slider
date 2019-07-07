@@ -1,13 +1,16 @@
 {
   "main": "node_modules/expo/AppEntry.js",
   "scripts": {
-    "copy": "cp -rf ../Slider/ ./Slider",
-    "start": "yarn copy && expo start",
-    "android": "yarn copy && expo start --android",
-    "ios": "yarn copy && expo start --ios",
-    "web": "yarn copy && expo start --web",
+    "copy": "cp -rf ./Slider ../Slider/",
+    "start": "expo start",
+    "android": "expo start --android",
+    "ios": "expo start --ios",
+    "web": "expo start --web",
     "eject": "expo eject"
   },
+  "pre-push": [
+    "copy"
+  ],
   "dependencies": {
     "expo": "^33.0.0",
     "react": "16.8.3",
@@ -16,7 +19,8 @@
     "react-native-web": "^0.11.4"
   },
   "devDependencies": {
-    "babel-preset-expo": "^5.1.1"
+    "babel-preset-expo": "^5.1.1",
+    "pre-push": "^0.1.1"
   },
   "private": true
 }
