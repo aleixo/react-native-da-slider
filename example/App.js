@@ -7,18 +7,37 @@ export default function App() {
   return (
     <View style={styles.container}>
       <Slider
-        height={100}
         autoplay
+        height={100}
         autoplayInterval={2000}
         defaultPaginationActiveColor="black"
-        deafultPaginationInactiveColor="blue"
+        defaultPaginationInactiveColor="blue"
+        pages={[
+          () => <View style={{ backgroundColor: 'red', height: 100, }}>
+            <Text>Open up App.js to start working on your app!</Text>
+          </View>
+          ,
+          () => <View style={{ backgroundColor: 'blue', height: 100 }}>
+            <Text>Open up App.js to start working on your app!</Text>
+          </View>
+          ,
+          () => <View style={{ backgroundColor: 'red', height: 100, }}>
+            <Text>Open up App.js to start working on your app!</Text>
+          </View>
+          ,
+          () => <View style={{ backgroundColor: 'blue', height: 100 }}>
+            <Text>Open up App.js to start working on your app!</Text>
+          </View>
+          ,
+          () => <View style={{ backgroundColor: 'red', height: 100, }}>
+            <Text>Open up App.js to start working on your app!</Text>
+          </View>
+          ,
+          () => <View style={{ backgroundColor: 'blue', height: 100 }}>
+            <Text>Open up App.js to start working on your app!</Text>
+          </View>
+        ]}
       >
-        <View style={{ backgroundColor: 'red', height: 100, }}>
-          <Text>Open up App.js to start working on your app!</Text>
-        </View>
-        <View style={{ backgroundColor: 'blue', height: 100 }}>
-          <Text>Open up App.js to start working on your app!</Text>
-        </View>
       </Slider>
     </View>
   );

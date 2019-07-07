@@ -9,9 +9,10 @@ class Slider extends React.Component {
     super(props);
 
     this.currentIndex = 0;
-    this.datasource = props.children;
+    this.datasource = props.pages;
 
     this.state = {
+      currentIndex: 0,
       layout: {},
       listKey: `${Math.random()}`,
     }
@@ -90,7 +91,7 @@ class Slider extends React.Component {
    * @param {Object} item - THe component to be mounted.
    */
   _handleFlatListRenderItem = ({ item }) => {
-    return <View style={styles.fullWidth}>{item}</View>
+    return <View style={styles.fullWidth}>{item()}</View>
   }
 
   /**
@@ -155,9 +156,13 @@ class Slider extends React.Component {
 
   render() {
     const { currentIndex, layout, listKey } = this.state;
-    const { renderCustomPagination, overridePagination } = this.props;
+    const {
+      renderCustomPagination,
+      overridePagination,
+      defaultPaginationInactiveColor,
+      defaultPaginationActiveColor, height } = this.props;
     return (
-      <View onLayout={this._onViewLayout}>
+      <View height={height} onLayout={this._onViewLayout}>
         <FlatList
           horizontal
           listKey={listKey}
