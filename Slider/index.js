@@ -143,7 +143,7 @@ class Slider extends React.Component {
   }
 
   /**
-   * THis function stores the layour on the state
+   * This function stores the layout on the state
    * 
    * @param {Object} event - The event containing the new layout info as nativeEvent.layout.
    */
@@ -170,20 +170,32 @@ class Slider extends React.Component {
           onScrollEndDrag={this._handleScrollEnd}
         />
         <View style={[styles.paginationContainer, { width: layout.width, }]}>
-          {renderCustomPagination && <View style={{ width: layout.width }}>
-            {renderCustomPagination(currentIndex)}
-          </View>}
-          <View style={styles.defaultPaginationContainer}>
-            {this.datasource.map((data, index) => (
-              <View
-                key={index}
-                style={[
-                  styles.defaultPaginationItem,
-                  index === currentIndex && styles.defaultPagination__Active
-                ]}
-              />
-            ))}
-          </View>
+          {
+            renderCustomPagination &&
+            <View style={{ width: layout.width }}>
+              {renderCustomPagination(currentIndex)}
+            </View>
+          }
+          {
+            overridePagination ||
+            <View style={styles.defaultPaginationContainer}>
+              {
+                this.datasource.map((data, index) => (
+                  <View
+                    key={index}
+                    style={[
+                      styles.defaultPaginationItem,
+                      {
+                        backgroundColor: currentIndex === index
+                          ? defaultPaginationActiveColor
+                          : defaultPaginationInactiveColor
+                      },
+                    ]}
+                  />
+                ))
+              }
+            </View>
+          }
         </View>
       </View>
     );
@@ -192,11 +204,12 @@ class Slider extends React.Component {
 
 Slider.defaultProps = {
   autoplay: false,
-  autoplayInterval: undefined,
-  defaultPaginationStyleActive: undefined,
-  overrideDefaultPaginationStyle: false,
+  overridePagination: false,
+  autoplayInterval: 2000,
+  defaultPaginationActiveColor: "black",
+  defaultPaginationInactiveColor: "white",
+  children: [],
   onIndexChange: () => { },
   renderCustomPagination: () => { },
-  children: [],
 }
 export default Slider;

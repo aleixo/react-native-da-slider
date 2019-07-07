@@ -6,7 +6,13 @@ import Slider from './Slider';
 export default function App() {
   return (
     <View style={styles.container}>
-      <Slider height={100} autoplay autoplayInterval={2000}>
+      <Slider
+        height={100}
+        autoplay
+        autoplayInterval={2000}
+        defaultPaginationActiveColor="black"
+        deafultPaginationInactiveColor="blue"
+      >
         <View style={{ backgroundColor: 'red', height: 100, }}>
           <Text>Open up App.js to start working on your app!</Text>
         </View>

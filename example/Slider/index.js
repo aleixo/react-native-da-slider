@@ -9,11 +9,10 @@ class Slider extends React.Component {
     super(props);
 
     this.currentIndex = 0;
-    this.datasource = Array.isArray(props.children) ? props.children : [props.children];
+    this.datasource = props.children;
 
     this.state = {
       layout: {},
-      cellLayout: {},
       listKey: `${Math.random()}`,
     }
   }
@@ -91,13 +90,9 @@ class Slider extends React.Component {
    * @param {Object} item - THe component to be mounted.
    */
   _handleFlatListRenderItem = ({ item }) => {
-    return <View onLayout={this._onCellLayout} style={styles.fullWidth}>{item}</View>
+    return <View style={styles.fullWidth}>{item}</View>
   }
-  _onCellLayout = (event) => {
-    this.setState({
-      cellLayout: event.nativeEvent.layout
-    })
-  }
+
   /**
    * THis function handles the beggining of the scroll.
    * 
@@ -148,7 +143,7 @@ class Slider extends React.Component {
   }
 
   /**
-   * THis function stores the layour on the state
+   * This function stores the layout on the state
    * 
    * @param {Object} event - The event containing the new layout info as nativeEvent.layout.
    */
@@ -159,10 +154,10 @@ class Slider extends React.Component {
   }
 
   render() {
-    const { currentIndex, layout, listKey, cellLayout } = this.state;
-    const { renderCustomPagination, height } = this.props;
+    const { currentIndex, layout, listKey } = this.state;
+    const { renderCustomPagination } = this.props;
     return (
-      <View style={{ flex: 1, maxHeight: height, }} onLayout={this._onViewLayout}>
+      <View onLayout={this._onViewLayout}>
         <FlatList
           horizontal
           listKey={listKey}
@@ -181,19 +176,26 @@ class Slider extends React.Component {
               {renderCustomPagination(currentIndex)}
             </View>
           }
-          <View style={styles.defaultPaginationContainer}>
-            {
-              this.datasource.map((data, index) => (
-                <View
-                  key={index}
-                  style={[
-                    styles.defaultPaginationItem,
-                    index === currentIndex && styles.defaultPagination__Active
-                  ]}
-                />
-              ))
-            }
-          </View>
+          {
+            overridePagination ||
+            <View style={styles.defaultPaginationContainer}>
+              {
+                this.datasource.map((data, index) => (
+                  <View
+                    key={index}
+                    style={[
+                      styles.defaultPaginationItem,
+                      {
+                        backgroundColor: currentIndex === index
+                          ? defaultPaginationActiveColor
+                          : defaultPaginationInactiveColor
+                      },
+                    ]}
+                  />
+                ))
+              }
+            </View>
+          }
         </View>
       </View>
     );
@@ -202,11 +204,12 @@ class Slider extends React.Component {
 
 Slider.defaultProps = {
   autoplay: false,
+  overridePagination: false,
   autoplayInterval: 2000,
-  defaultPaginationStyleActive: undefined,
-  overrideDefaultPaginationStyle: false,
+  defaultPaginationActiveColor: "black",
+  defaultPaginationInactiveColor: "white",
+  children: [],
   onIndexChange: () => { },
   renderCustomPagination: () => { },
-  children: [],
 }
 export default Slider;

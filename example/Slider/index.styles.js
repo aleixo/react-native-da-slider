@@ -14,9 +14,6 @@ export default StyleSheet.create({
     marginHorizontal: 1,
     backgroundColor: 'blue'
   },
-  defaultPagination__Active: {
-    backgroundColor: 'red'
-  },
   paginationContainer: {
     bottom: 10,
     position: 'absolute',
