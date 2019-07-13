@@ -50,7 +50,6 @@ If you think that you can improve the component, please open one **PR**
 ```
 
 ## With some features
-![](slider.gif)
 ```
 <Slider
   loop
@@ -101,7 +100,7 @@ If you think that you can improve the component, please open one **PR**
 | autoplayInterval               | 2000       | `number`   | The number of milliseconds between each autoplay loop.                                                 |
 | loop                           | false      | 'bool'     | Indicates if the component should allow to loop. Go from last index to the first and oposite           |
 | onIndexChange                  | () => {}   | 'function' | One callback that will be called each time the index of sliding page has already changed.              |
-| height                         | undefined  | number     | This props lets you specify the height of the slider. The default will lead to flex meaning it will default to the slider container sizes.                    |
+| height                         | undefined  | number     | This props lets you specify the height of the slider. The default will lead to flex meaning it will default to the slider container sizes. Use height to set slider container size                   |
 | defaultPaginationActiveColor   | black      | 'string    | This string is the color to be used on the active page dot, when default pagination is not overriden   |
 | defaultPaginationInactiveColor | white      | 'string    | This string is the color to be used on the inactive page dot, when default pagination is not overriden |
 
