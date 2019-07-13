@@ -17,7 +17,8 @@ If you think that you can improve the component, please open one **PR**
 # Usage
 
 ## Basic
-
+The slider will take the space of the parent container and the slider pages, will have diferent heights.
+No autoplay, loop or any customization.
 ```
 <Slider
   pages={[
