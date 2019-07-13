@@ -50,7 +50,7 @@ If you think that you can improve the component, please open one **PR**
 ```
 
 ## With some features
-![](slidef.gif)
+![](slider.gif)
 ```
 <Slider
   loop
