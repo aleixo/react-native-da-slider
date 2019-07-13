@@ -1,5 +1,6 @@
 import React from 'react';
 
+import PropTypes from 'prop-types';
 import { View, FlatList } from 'react-native';
 
 import styles from './index.styles';
@@ -259,15 +260,26 @@ class Slider extends React.Component {
   }
 }
 
+Slider.propTypes = {
+  pages: PropTypes.arrayOf(PropTypes.func).isRequired,
+  overridePagination: PropTypes.bool,
+  renderCustomPagination: PropTypes.func,
+  loop: PropTypes.bool,
+  autoplay: PropTypes.bool,
+  autoplayInterval: PropTypes.number,
+  defaultPaginationActiveColor: PropTypes.string,
+  defaultPaginationInactiveColor: PropTypes.string,
+  onIndexChange: PropTypes.func,  
+}
+
 Slider.defaultProps = {
   autoplay: false,
   overridePagination: false,
+  loop: false,
   autoplayInterval: 3000,
   defaultPaginationActiveColor: "black",
   defaultPaginationInactiveColor: "white",
-  children: [],
   onIndexChange: () => { },
   renderCustomPagination: () => { },
-  loop: false,
 }
 export default Slider;

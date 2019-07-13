@@ -40,6 +40,34 @@ export default function App() {
         ]}
       >
       </Slider>
+      <Slider
+        pages={[
+          () => <View style={{ backgroundColor: 'red', flex: 1 }}>
+            <Text>Open up App.js to start working on your app!</Text>
+          </View>
+          ,
+          () => <View style={{ backgroundColor: 'blue', height: 100 }}>
+            <Text>Open up App.js to start working on your app!</Text>
+          </View>
+          ,
+          () => <View style={{ backgroundColor: 'red', flex: 0.5 }}>
+            <Text>Open up App.js to start working on your app!</Text>
+          </View>
+          ,
+          () => <View style={{ backgroundColor: 'blue', height: 100 }}>
+            <Text>Open up App.js to start working on your app!</Text>
+          </View>
+          ,
+          () => <View style={{ backgroundColor: 'red', height: 100, }}>
+            <Text>Open up App.js to start working on your app!</Text>
+          </View>
+          ,
+          () => <View style={{ backgroundColor: 'blue', height: 100 }}>
+            <Text>Open up App.js to start working on your app!</Text>
+          </View>
+        ]}
+      >
+      </Slider>
     </View>
   );
 }
